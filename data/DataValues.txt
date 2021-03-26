@@ -1,0 +1,8 @@
+File    -   Temperature   -   Humidity 
+----------------------------------------
+Example1.wav    19.6°C           23%        
+Example2.wav    21.0°C           23%
+Example3.wav    19.1°C           26%
+Example4.wav    18.7°C           29%
+Example5.wav    18.5°C           30%
+Unknown.wav      ?°C             ?%
