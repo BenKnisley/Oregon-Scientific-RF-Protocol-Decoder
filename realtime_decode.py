@@ -5,8 +5,10 @@ Date: 13 May, 2019
 """
 import sys, io
 import wave, struct, datetime
-from exe3 import *
-from signal_functions import *
+import numpy as np
+import signal_functions
+import message_functions
+
 
 ## Define Globals
 HEADSIZE = 48
@@ -45,22 +47,22 @@ while True:
 
 
     ## Smooth samples
-    samples = smooth_samples(samples)
+    samples = signal_functions.smooth_samples(samples)
 
-    pulses = extract_data_pulses(samples)
+    pulses = signal_functions.extract_data_pulses(samples)
 
 
     for pulse in pulses:
-        pos, neg = split_samples(pulse)
+        pos, neg = signal_functions.split_samples(pulse)
 
-        pos = samples2signal(pos)
-        neg = samples2signal(neg)
+        pos = signal_functions.samples2signal(pos)
+        neg = signal_functions.samples2signal(neg)
 
-        pos_msg = process_message(manchester_decode(pos))
-        neg_msg = process_message(manchester_decode(neg))
+        pos_msg = message_functions.process_message(signal_functions.manchester_decode(pos))
+        neg_msg = message_functions.process_message(signal_functions.manchester_decode(neg))
 
         print(pos_msg)
         print(neg_msg)
 
-        print(hex2data(pos_msg))
-        print(hex2data(neg_msg))
+        print(message_functions.hex2data(pos_msg))
+        print(message_functions.hex2data(neg_msg))
